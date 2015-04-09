@@ -91,7 +91,7 @@ public class SetupScreenController implements ScreenController {
 				game.SpawnCitizen(DwarfID, Pather.Tester.getRandomPassableCoordinate());
 			}
 			nifty.gotoScreen("GameScreen");
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}

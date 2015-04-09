@@ -101,7 +101,7 @@ public class LoadGameScreenController implements ScreenController {
 						saveGameHeaders.add(saveGameHeader);
 					}
 				}
-			} catch (Exception e) {
+			} catch (Throwable e) {
 				ErrorPopupController.ShowErrorMessage(nifty, "Problem displaying save games", e.toString());
 				e.printStackTrace();
 			} finally {
@@ -109,7 +109,7 @@ public class LoadGameScreenController implements ScreenController {
 					if (ois != null) {
 						ois.close();
 					}
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					ErrorPopupController.ShowErrorMessage(nifty, "Problem displaying save games", e.toString());
 					e.printStackTrace();
 				}
@@ -220,7 +220,7 @@ public class LoadGameScreenController implements ScreenController {
 			Pather.createMapAbstraction(game.getMap());
 			//Pather.AllocateThreadPool(ExecutionThreadpool);
 			Main.app.getStateManager().attach(Pather);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			// TODO show a better message to the user
 			ErrorPopupController.ShowErrorMessage(nifty, "Problem loading game", e.toString());
 			e.printStackTrace();
@@ -229,7 +229,7 @@ public class LoadGameScreenController implements ScreenController {
 				if (ois != null) {
 					ois.close();
 				}
-			} catch (IOException e) {
+			} catch (Throwable e) {
 				// TODO show a better message to the user
 				ErrorPopupController.ShowErrorMessage(nifty, "Problem loading game", e.toString());
 				e.printStackTrace();

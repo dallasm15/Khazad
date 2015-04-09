@@ -326,10 +326,4 @@ public class Game extends AbstractAppState implements ActionListener, Serializab
 	public void setGameScreenController(GameScreenController gameScreenController) {
 		this.gameScreenController = gameScreenController;
 	}
-
-	@Override
-	public void cleanup() {
-		super.cleanup();
-		app.getInputManager().removeListener(this);
-	}
 }

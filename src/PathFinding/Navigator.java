@@ -15,7 +15,7 @@
  You should have received a copy of the GNU General Public License
  along with Khazad.	If not, see <http://www.gnu.org/licenses/> */
 
-package pathFinding;
+package PathFinding;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -134,8 +134,8 @@ public class Navigator implements Serializable {
 							//Set future to null. Maybe we succeed next time...
 							PathFuture = null;
 						}
-					} catch (Exception e) {
-						//e.printStackTrace();
+					} catch (Throwable e) {
+						e.printStackTrace();
 					}
 					return Direction.DIRECTION_NONE;
 				}

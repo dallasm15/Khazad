@@ -71,7 +71,7 @@ public class Ticker implements Callable<Object>, Serializable {
 				thegame.TemporalQueue.add(target);
 			}
 			// Other game logics here	
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			System.err.println(e.getLocalizedMessage());
 			System.err.println(e.getMessage());
 			System.err.println(e.toString());

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package pathFinding;
+package PathFinding;
 
 import Map.MapCoordinate;
 import Map.Zone;

@@ -128,7 +128,7 @@ public class MenuPopupController implements Controller {
 			oos.writeObject(game);
 			ShowSaveSuccess();
 			screenController.CloseMenuPopup();
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			ShowSaveError(e.toString());
 			e.printStackTrace();
 		} finally {
@@ -136,7 +136,7 @@ public class MenuPopupController implements Controller {
 				if (oos != null) {
 					oos.close();
 				}
-			} catch (Exception e) {
+			} catch (Throwable e) {
 				ShowSaveError(e.toString());
 				e.printStackTrace();
 			}

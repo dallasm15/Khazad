@@ -88,7 +88,7 @@ public class Main extends SimpleApplication {
 			PrintStream ps = new PrintStream(fos);
 			System.setErr(ps);
 			//throw new Exception("Exception goes to err.txt too");
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 		app.assetManager.registerLocator("assets/", FileLocator.class);

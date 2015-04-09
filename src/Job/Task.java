@@ -23,7 +23,7 @@ import Map.MapCoordinate;
 import Map.Direction;
 import Map.CubeShape;
 import Game.Pawn;
-import pathFinding.Navigator;
+import PathFinding.Navigator;
 import java.io.Serializable;
 
 /**
