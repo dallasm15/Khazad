@@ -197,8 +197,7 @@ public class SelectionRenderer extends AbstractAppState {
 			return;
 		}
 		MapCoordinate mouse = cam.getMouseLocation();
-		if (cam.getSelectedActor() == null)
-		{
+		if (cam.getSelectedActor() == null) {
 			CursorBox.setLocalTranslation(new Vector3f(mouse.X, mouse.Y, mouse.Z));
 			CursorBox.setCullHint(CullHint.Dynamic);
 		} else {

@@ -24,7 +24,7 @@ import nu.xom.Element;
 import nu.xom.Elements;
 /**
  *
- * @author Impaler
+ * @author  Dallas
  */
 public class GivenNameGroupData extends DataBase implements Serializable {
 	private static final long serialVersionUID = 1;

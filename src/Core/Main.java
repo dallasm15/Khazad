@@ -180,7 +180,6 @@ public class Main extends SimpleApplication {
 	
 	public void initialiseKeyboardMappings() {
 		// TODO move this to some key mappings UI
-		
 		// used in GameCameraState
 		inputManager.addMapping("mouseDown", new MouseAxisTrigger(1, true));
 		inputManager.addMapping("mouseUp", new MouseAxisTrigger(1, false));
@@ -205,7 +204,6 @@ public class Main extends SimpleApplication {
 
 		inputManager.addMapping("RShift", new KeyTrigger(KeyInput.KEY_RSHIFT));
 		inputManager.addMapping("LShift", new KeyTrigger(KeyInput.KEY_LSHIFT));
-		
 		// used in Game
 		inputManager.addMapping("Pause", new KeyTrigger(KeyInput.KEY_SPACE));
 		inputManager.addMapping("Faster", new KeyTrigger(KeyInput.KEY_ADD));

@@ -26,8 +26,8 @@ import Map.Direction;
 import Map.GameMap;
 import Map.MapCoordinate;
 
-import pathFinding.PathFinding;
-import pathFinding.MovementModality;
+import PathFinding.PathManager;
+import PathFinding.MovementModality;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
@@ -68,7 +68,7 @@ public class PathingRenderer extends AbstractAppState {
 	AppStateManager state = null;
 	AssetManager assetmanager = null;
 	Game game = null;
-	PathFinding Pathing;
+	PathManager Pathing;
 	Node PathingNode;
 	HashMap<CellCoordinate, Node> cells;
 	HashMap<Integer, Material> ZoneMaterials;
@@ -95,7 +95,7 @@ public class PathingRenderer extends AbstractAppState {
 		PathingNode = new Node("PathingNode");
 		this.app.getRootNode().attachChild(PathingNode);
 
-		this.Pathing = PathFinding.getSingleton();
+		this.Pathing = PathManager.getSingleton();
 		ZoneMaterials = new HashMap<Integer, Material>();
 	}
 

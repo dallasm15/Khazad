@@ -10,7 +10,7 @@ import Game.Game;
 import Game.SaveGameHeader;
 import Interface.GameCameraState;
 import Job.JobManager;
-import pathFinding.PathFinding;
+import PathFinding.PathManager;
 import Renderer.MapRenderer;
 import Renderer.PathingRenderer;
 import Renderer.SelectionRenderer;
@@ -202,30 +202,24 @@ public class LoadGameScreenController implements ScreenController {
 			// initialize the game
 			Main.app.getStateManager().attach(game);
 			Main.app.getStateManager().getState(MapRenderer.class).attachToGame(game);
-			Main.app.getStateManager()
-					.getState(TerrainRenderer.class).attachToGame(game);
-			Main.app.getStateManager()
-					.attach(new SelectionRenderer());
-			Main.app.getStateManager()
-					.getState(PathingRenderer.class).attachToGame(game);
+			Main.app.getStateManager().getState(TerrainRenderer.class).attachToGame(game);
+			Main.app.getStateManager().attach(new SelectionRenderer());
+			Main.app.getStateManager().getState(PathingRenderer.class).attachToGame(game);
 
 			GameCameraState cam = new GameCameraState();
 
-			Main.app.getStateManager()
-					.attach(cam);
+			Main.app.getStateManager().attach(cam);
 			cam.setViewSize(game.getMap().getHighestCell(), game.getMap().getLowestCell());
 			cam.setSlice(game.getMap().getHighestCell() - 2, game.getMap().getLowestCell() + 2);
 
 			JobManager jobs = game.getSettlement().getJobManager();
 			// PATHING
-			PathFinding Pather = PathFinding.getSingleton();
+			PathManager Pather = PathManager.getSingleton();
 
-			Pather.initialize(
-					Main.app.getStateManager(), Main.app);
+			Pather.initialize(Main.app.getStateManager(), Main.app);
 			Pather.createMapAbstraction(game.getMap());
 			//Pather.AllocateThreadPool(ExecutionThreadpool);
-			Main.app.getStateManager()
-					.attach(Pather);
+			Main.app.getStateManager().attach(Pather);
 		} catch (Exception e) {
 			// TODO show a better message to the user
 			ErrorPopupController.ShowErrorMessage(nifty, "Problem loading game", e.toString());

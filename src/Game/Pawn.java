@@ -25,9 +25,9 @@ import Data.Types.*;
 import Map.Direction;
 import Map.MapCoordinate;
 
-import pathFinding.MovementModality;
-import pathFinding.Navigator;
-import pathFinding.PathFinding;
+import PathFinding.MovementModality;
+import PathFinding.Navigator;
+import PathFinding.PathManager;
 
 import java.io.Serializable;
 
@@ -81,10 +81,10 @@ public class Pawn extends Actor implements Serializable {
 			BasicAttributes[i] += CreatureDataEntry.AttributeModifierVales[i];  //Size class adjustment
 			BasicAttributes[i] += CreatureSizeDataEntry.AttributeModifierVales[i];  //Size class adjustment
 		}
-		if (AttributeDice.roll(1,2) == 1) {
-			gender = Gender.GENDER_MALE;
-		} else {
+		if (AttributeDice.roll(1,3) == 1) {
 			gender = Gender.GENDER_FEMALE;
+		} else {
+			gender = Gender.GENDER_MALE;
 		}
 	}
 
@@ -93,7 +93,7 @@ public class Pawn extends Actor implements Serializable {
 	}
 
 	public long attemptMove(Direction MovementDirection) {
-		float EdgeCost = PathFinding.getSingleton().getEdgeCost(LocationCoordinates, MovementDirection, PathNavigator.getMovementModality());
+		float EdgeCost = PathManager.getSingleton().getEdgeCost(LocationCoordinates, MovementDirection, PathNavigator.getMovementModality());
 		final int speedIndex = DataManager.getDataManager().getLabelIndex("BASIC_ATTRIBUTE_SPEED");
 		if (EdgeCost != -1) {
 			return (int) (EdgeCost / ((float) BasicAttributes[speedIndex] / 7.0) * TICKS_PER_SECOND);

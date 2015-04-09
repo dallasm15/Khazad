@@ -8,7 +8,7 @@ package Nifty;
 import Core.Main;
 import Game.Game;
 import Interface.GameCameraState;
-import pathFinding.PathFinding;
+import PathFinding.PathManager;
 import Renderer.MapRenderer;
 import Renderer.PathingRenderer;
 import Renderer.SelectionRenderer;
@@ -79,7 +79,7 @@ public class SetupScreenController implements ScreenController {
 			cam.setSlice(game.getMap().getHighestCell() - 2, game.getMap().getLowestCell() + 2);
 
 			// PATHING
-			PathFinding Pather = PathFinding.getSingleton();
+			PathManager Pather = PathManager.getSingleton();
 			Pather.initialize(Main.app.getStateManager(), Main.app);
 			Pather.createMapAbstraction(game.getMap());
 			//Pather.AllocateThreadPool(ExecutionThreadpool);

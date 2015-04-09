@@ -45,7 +45,7 @@ import de.lessvoid.nifty.controls.WindowClosedEvent;
 import de.lessvoid.nifty.controls.dynamic.CustomControlCreator;
 import java.text.NumberFormat;
 import java.util.HashMap;
-import pathFinding.PathFinding;
+import PathFinding.PathManager;
 
 /**
  *
@@ -124,10 +124,10 @@ public class GameScreenController implements ScreenController, KeyInputHandler, 
 		Game game = Main.app.getStateManager().getState(Game.class);
 		timeLabel.setText(game.getTimeString());
 		// update pathfinding statistics
-		PathFinding pathFinding = PathFinding.getSingleton();
+		PathManager pathFinding = PathManager.getSingleton();
 		NumberFormat numberFormat = NumberFormat.getIntegerInstance(); // comma seperated
-		expandedNodesLabel.setText(numberFormat.format(pathFinding.getExpandedNodes()));
-		graphReadsLabel.setText(numberFormat.format(pathFinding.getGraphReads()));
+		expandedNodesLabel.setText(numberFormat.format(-1));
+		graphReadsLabel.setText(numberFormat.format(-1));
 	}
 
 	public boolean keyEvent(NiftyInputEvent event) {
