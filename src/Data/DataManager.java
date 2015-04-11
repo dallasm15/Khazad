@@ -34,7 +34,8 @@ public class DataManager implements Serializable {
 	private static final long serialVersionUID = 1;
 	public static final short INVALID_INDEX = -1;
 	private static DataManager instance = null;
-	ConcurrentHashMap GlobalLabelMap, GlobalDataTypeMap;
+	ConcurrentHashMap<String, Integer> GlobalLabelMap;
+	ConcurrentHashMap<String, DataLibrary> GlobalDataTypeMap;
 
 	protected DataManager() {
 		GlobalLabelMap = new ConcurrentHashMap<String, Integer>();
@@ -372,10 +373,10 @@ public class DataManager implements Serializable {
 	}
 
 	DataLibrary getDataTypeGroup(String ElementType) {
-		Object Library = GlobalDataTypeMap.get(ElementType);
+		DataLibrary Library = GlobalDataTypeMap.get(ElementType);
 
 		if (Library != null) {
-			return (DataLibrary) Library;
+			return Library;
 		} else {
 			System.err.println(ElementType + " is not in GlobalDataTypeMap");
 			return null;

@@ -18,6 +18,7 @@
 package Game;
 
 import Map.MapCoordinate;
+import com.jme3.math.Vector3f;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -33,18 +34,19 @@ import java.io.Serializable;
 public abstract class Actor extends Temporal implements Serializable {
 
 	private static final long serialVersionUID = 1;
-
 	// The location for gameplay logic purposes
 	MapCoordinate LocationCoordinates;
 	boolean Visible;
 	boolean Hidden;
 	// Used by Rendering
 	transient boolean Dirty;
+	private String ModelID;
 
-	public Actor(int id, MapCoordinate SpawnLocation) {
+	public Actor(int id, MapCoordinate SpawnLocation, String modelID) {
 		this.ID = id;
 
 		LocationCoordinates = SpawnLocation;
+		this.ModelID = modelID;
 		Dirty = true;
 	}
 
@@ -74,5 +76,9 @@ public abstract class Actor extends Temporal implements Serializable {
 			//ActorNode. (NewValue);
 			Dirty = true;
 		}
+	}
+
+	public String getModelID() {
+		return ModelID;
 	}
 }

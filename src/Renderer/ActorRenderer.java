@@ -17,6 +17,8 @@
 
 package Renderer;
 
+import Data.DataManager;
+import Data.Types.ModelData;
 import Game.Actor;
 import Game.Game;
 import Game.Pawn;
@@ -40,7 +42,6 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.LodControl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -87,13 +88,19 @@ public class ActorRenderer extends AbstractAppState {
 					if (actorNode == null) {
 
 						//Geometry = new Sphere();
-						Spatial actorModel = assetmanager.loadModel("Models/Dwarf/Dwarf.j3o");
-						actorModel.scale(0.25f, 0.25f, 0.25f);
-						actorModel.rotate(1.5f, 0.0f, 0.0f);
+						// get model data to create the node
+						DataManager data = DataManager.getDataManager();
+						short modelIndex = data.getLabelIndex(target.getModelID());
+						ModelData modelData = data.getModelData(modelIndex);
+						Spatial actorModel = assetmanager.loadModel(modelData.getFilePath());
+						Vector3f modelScale = modelData.getScale();
+						actorModel.scale(modelScale.x, modelScale.y, modelScale.z);
+						Vector3f modelRotate = modelData.getRotate();
+						actorModel.rotate(modelRotate.x, modelRotate.y, modelRotate.z);
 
 						actorNode = new Node("ActorNode-" + target.getID());
 						actorNode.attachChild(actorModel);
-						ActorNodeMap.put(new Integer(target.getID()), actorNode);
+						ActorNodeMap.put(target.getID(), actorNode);
 					}
 
 					actorNode.setCullHint(Spatial.CullHint.Dynamic);

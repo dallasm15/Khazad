@@ -38,8 +38,8 @@ public class Citizen extends Pawn implements Serializable {
 	// Happyness/ moods/ hunger/ thirst/ wealth/ honor / other mutable status
 	// personality/ tastes/ other fixed status
 	// Proffessions / levels/ skills
-	public Citizen(short CreatureTypeID, int id, int seed, MapCoordinate SpawnLocation) {
-		super(CreatureTypeID, id, seed, SpawnLocation);
+	public Citizen(String CreatureTypeID, int id, int seed, MapCoordinate SpawnLocation, String modelID) {
+		super(CreatureTypeID, id, seed, SpawnLocation, modelID);
 		// TODO randomly generated name
 		generateName("GIVEN_NAMEGROUP_TOLKEINESQUE");
 		//setFirstName("Urist");

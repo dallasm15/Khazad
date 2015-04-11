@@ -1,86 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Models xmlns="https://github.com/ImpalerWrG/Khazad">
 	<Model>
-		<Name Label="MODEL_SAGUARO"/>
-		<File Path="Models/Saguaro/Saguaro.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_OAK"/>
-		<File Path="Models/oak/oak_leaves_snow.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_MAPLE"/>
-		<File Path="Models/maple/maple.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_BIRCH"/>
-		<File Path="Models/birch/birch.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_CHESTNUT"/>
-		<File Path="Models/chestnut/chestnut.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_PALM"/>
-		<File Path="Models/palm/palm.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_LARCH"/>
-		<File Path="Models/larch/larch.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_PINE"/>
-		<File Path="Models/pine/pine.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_BOULDER"/>
-		<File Path="Models/stones/stone04.obj"/>
-		<Scale value="1.1"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_CHAIR"/>
-		<File Path="Models/chair/chair.obj"/>
-		<Scale value="1.6"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_BIN"/>
-		<File Path="Models/bin/bin.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_CAGE"/>
-		<File Path="Models/cage/cage.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_LEVER"/>
-		<File Path="Models/lever/lever.obj"/>
-		<Scale value="1.7"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_QERN"/>
-		<File Path="Models/qern/qern.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_HATCH"/>
-		<File Path="Models/hatch/hatch.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_MASONS_WORKSHOP"/>
-		<File Path="Models/masons_workshop/masons_workshop.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_FLOOR_GRATE"/>
-		<File Path="Models/grates-bars/floor_grate.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_WALL_GRATE"/>
-		<File Path="Models/grates-bars/wall_grate.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_FLOOR_BARS"/>
-		<File Path="Models/grates-bars/floor_bars.obj"/>
-	</Model>
-	<Model>
-		<Name Label="MODEL_WALL_BARS"/>
-		<File Path="Models/grates-bars/wall_bars.obj"/>
+		<Name Label="MODEL_DWARF" />
+		<File Path="Models/Dwarf/Dwarf.j3o"/>
+		<Scale X="0.25" Y="0.25" Z="0.25"/>
+		<Rotate X="1.5" Y="0" Z="0"/>
 	</Model>
 </Models>

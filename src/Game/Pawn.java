@@ -40,7 +40,7 @@ import java.io.Serializable;
 public class Pawn extends Actor implements Serializable {
 
 	private static final long serialVersionUID = 1;
-	short CreatureTypeID;
+	String CreatureTypeID;
 	// Action extension of 
 	long ActionDuration = 1;
 	long ActionStarted;
@@ -60,8 +60,8 @@ public class Pawn extends Actor implements Serializable {
 	private String lastName;
 	private Gender gender;
 
-	public Pawn(short CreatureTypeID, int id, int Seed, MapCoordinate SpawnLocation) {
-		super(id, SpawnLocation);
+	public Pawn(String CreatureTypeID, int id, int Seed, MapCoordinate SpawnLocation, String modelId) {
+		super(id, SpawnLocation, modelId);
 
 		this.CreatureTypeID = CreatureTypeID;
 		Moving = false;
@@ -72,7 +72,8 @@ public class Pawn extends Actor implements Serializable {
 		AttributeDice.seed(id ^ Seed);
 
 		DataManager Data = DataManager.getDataManager();
-		CreatureData CreatureDataEntry = Data.getCreatureData(CreatureTypeID);
+		short creatureTypeIndex = Data.getLabelIndex(CreatureTypeID);
+		CreatureData CreatureDataEntry = Data.getCreatureData(creatureTypeIndex);
 		CreatureSizeData CreatureSizeDataEntry = Data.getCreatureSizeData(CreatureDataEntry.SizeID);
 
 		BasicAttributes = new byte[Data.getNumBaseAttributes()];
@@ -203,7 +204,7 @@ public class Pawn extends Actor implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getName() {
 		return this.firstName + ' ' + this.lastName;
 	}

@@ -48,10 +48,8 @@ public class DataLibrary<T extends DataBase> implements Serializable {
 		try {
 			DataBase NewEntry = DataClass.newInstance();
 			NewEntry.loadData(XMLEntry, this);
-		} catch (InstantiationException ex) {
-			System.err.println(ex.getMessage());
-		} catch (IllegalAccessException ex) {
-			System.err.println(ex.getMessage());
+		} catch (Throwable e) {
+			System.err.println(e.getMessage());
 		}
 	}
 
