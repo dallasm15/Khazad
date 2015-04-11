@@ -19,6 +19,7 @@ package Data.Types;
 
 import Data.DataBase;
 import Data.DataLibrary;
+import com.jme3.math.Vector3f;
 import java.io.Serializable;
 import nu.xom.Element;
 
@@ -29,23 +30,58 @@ import nu.xom.Element;
 public class ModelData extends DataBase implements Serializable {
 
 	private static final long serialVersionUID = 1;
-	String FilePath;
+	private String FilePath;
+	private Vector3f scale;
+	private Vector3f rotate;
 
 	public ModelData() {
 	}
 
+	@Override
 	public boolean loadData(Element ModelEntry, DataLibrary Library) {
 		Element Name = ModelEntry.getFirstChildElement("Name", ModelEntry.getNamespaceURI());
-		Library.indexEntry(Name.getAttributeValue("Label"), this);
+		String label = Name.getAttributeValue("Label");
 
-		Element File = ModelEntry.getFirstChildElement("File", ModelEntry.getNamespaceURI());
-		if (File != null)
-			FilePath = File.getAttributeValue("Path");
+		Element fileElement = ModelEntry.getFirstChildElement("File", ModelEntry.getNamespaceURI());
+		if (fileElement != null)
+			FilePath = fileElement.getAttributeValue("Path");
 
+		Element scaleElement = ModelEntry.getFirstChildElement("Scale", ModelEntry.getNamespaceURI());
+		if (scaleElement != null) {
+			this.scale = new Vector3f(
+					Float.parseFloat(scaleElement.getAttributeValue("X")),
+					Float.parseFloat(scaleElement.getAttributeValue("Y")),
+					Float.parseFloat(scaleElement.getAttributeValue("Z")));
+		} else {
+			this.scale = new Vector3f(1, 1, 1);
+		}
+
+		Element rotateElement = ModelEntry.getFirstChildElement("Rotate", ModelEntry.getNamespaceURI());
+		if (rotateElement != null) {
+			this.rotate = new Vector3f(
+					Float.parseFloat(rotateElement.getAttributeValue("X")),
+					Float.parseFloat(rotateElement.getAttributeValue("Y")),
+					Float.parseFloat(rotateElement.getAttributeValue("Z")));
+		} else {
+			this.rotate = new Vector3f(0, 0, 0);
+		}
+		Library.indexEntry(label, this);
 		return true;
 	}
 
 	public boolean postProcessing() {
 		return true;
+	}
+
+	public String getFilePath() {
+		return FilePath;
+	}
+
+	public Vector3f getScale() {
+		return scale;
+	}
+
+	public Vector3f getRotate() {
+		return rotate;
 	}
 }

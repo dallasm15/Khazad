@@ -85,10 +85,10 @@ public class SetupScreenController implements ScreenController {
 			//Pather.AllocateThreadPool(ExecutionThreadpool);
 			Main.app.getStateManager().attach(Pather);
 
-
-			short DwarfID = Data.DataManager.getDataManager().getLabelIndex("CREATURE_DWARF");
+			// using these shorts will not work very well with serialization, since they change easily.
+			//short DwarfID = Data.DataManager.getDataManager().getLabelIndex();
 			for (int i = 0; i < 100; i++) {
-				game.SpawnCitizen(DwarfID, Pather.Tester.getRandomPassableCoordinate());
+				game.SpawnCitizen("CREATURE_DWARF", Pather.Tester.getRandomPassableCoordinate(), "MODEL_DWARF");
 			}
 			nifty.gotoScreen("GameScreen");
 		} catch (Exception e) {

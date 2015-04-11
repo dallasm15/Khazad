@@ -166,16 +166,16 @@ public class Game extends AbstractAppState implements ActionListener, Serializab
 		return true;
 	}
 
-	public Pawn spawnPawn(MapCoordinate SpawnCoordinates, short CreatureTypeID) {
-		Pawn NewPawn = new Pawn(CreatureTypeID, ActorIDcounter, MasterSeed, SpawnCoordinates);
+	public Pawn spawnPawn(MapCoordinate SpawnCoordinates, String CreatureTypeID, String modelID) {
+		Pawn NewPawn = new Pawn(CreatureTypeID, ActorIDcounter, MasterSeed, SpawnCoordinates, modelID);
 		ActorIDcounter++;
 		Actors.put(NewPawn.getID(), NewPawn);
 		addTemporal(NewPawn);
 		return NewPawn;
 	}
 
-	public Citizen SpawnCitizen(short CreatureTypeID, MapCoordinate SpawnCoordinates) {
-		Citizen NewCitizen = new Citizen(CreatureTypeID, ActorIDcounter, PawnDice.roll(0, MasterSeed), SpawnCoordinates);
+	public Citizen SpawnCitizen(String CreatureTypeID, MapCoordinate SpawnCoordinates, String modelID) {
+		Citizen NewCitizen = new Citizen(CreatureTypeID, ActorIDcounter, PawnDice.roll(0, MasterSeed), SpawnCoordinates, modelID);
 		ActorIDcounter++;
 		Actors.put(NewCitizen.getID(), NewCitizen);
 		GameSettlement.addCitizen(NewCitizen);
