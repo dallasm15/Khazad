@@ -182,6 +182,15 @@ public class Game extends AbstractAppState implements ActionListener, Serializab
 		addTemporal(NewCitizen);
 		return NewCitizen;
 	}
+	
+	public Item spawnItem(MapCoordinate SpawnCoordinates, String modelID) {
+		Item newItem = new Item(ActorIDcounter, SpawnCoordinates, modelID);
+		ActorIDcounter++;
+		Actors.put(newItem.getID(), newItem);
+		addTemporal(newItem);
+		return newItem;
+	}
+
 
 	boolean addTemporal(Temporal NewTemporal) {
 		TemporalQueue.add(NewTemporal);

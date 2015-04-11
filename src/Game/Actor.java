@@ -39,7 +39,7 @@ public abstract class Actor extends Temporal implements Serializable {
 	boolean Visible;
 	boolean Hidden;
 	// Used by Rendering
-	transient boolean Dirty;
+	private transient boolean Dirty;
 	private String ModelID;
 
 	public Actor(int id, MapCoordinate SpawnLocation, String modelID) {
@@ -52,14 +52,14 @@ public abstract class Actor extends Temporal implements Serializable {
 
 	public void setLocation(MapCoordinate NewPosition) {
 		LocationCoordinates = NewPosition;
-		Dirty = true;
+		setDirty(true);
 	}
 
 	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
 		// default deserialization
 		ois.defaultReadObject();
 		// fix transients
-		Dirty = true;
+		setDirty(true);
 	}
 
 	public boolean isDirty() {
@@ -74,11 +74,15 @@ public abstract class Actor extends Temporal implements Serializable {
 		if (Visible != NewValue) {
 			Visible = NewValue;
 			//ActorNode. (NewValue);
-			Dirty = true;
+			setDirty(true);
 		}
 	}
 
 	public String getModelID() {
 		return ModelID;
+	}
+
+	public void setDirty(boolean Dirty) {
+		this.Dirty = Dirty;
 	}
 }

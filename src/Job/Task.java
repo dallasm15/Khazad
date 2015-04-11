@@ -18,6 +18,8 @@
 package Job;
 
 
+import Core.Main;
+import Game.Game;
 import Map.GameMap;
 import Map.MapCoordinate;
 import Map.Direction;
@@ -50,7 +52,7 @@ public class Task implements Serializable {
 	private static final long serialVersionUID = 1;
 	public final Job ParentJob;
 	public final TaskType type;
-	public final MapCoordinate worklocation;
+	public final MapCoordinate workLocation;
 	public final Direction workdirection;
 	public boolean Completed;
 	public boolean Begun;
@@ -58,7 +60,7 @@ public class Task implements Serializable {
 	public Task(Job Parent, TaskType NewType, MapCoordinate location) {
 		ParentJob = Parent;
 		type = NewType;
-		worklocation = location;
+		workLocation = location;
 		workdirection = null;
 		Begun = false;
 		Completed = false;
@@ -82,7 +84,7 @@ public class Task implements Serializable {
 				break;
 			case TASK_GOTO:
 				Host.getNavigator().setBehaviorMode(Navigator.MovementBehavior.PATH_BEHAVIOR_ROUTE_TO_LOCATION);
-				Host.getNavigator().changeDestination(worklocation);
+				Host.getNavigator().changeDestination(workLocation);
 				MovementDirection = Host.getNavigator().getNextStep();
 				Host.setMovementDiretion(MovementDirection);
 				Begun = true;
@@ -124,8 +126,8 @@ public class Task implements Serializable {
 				break;
 			case TASK_DIG:
 				ExcavateJob Excavation = (ExcavateJob) ParentJob;
-				CubeShape DesignatedShape = Excavation.getDesignation(worklocation);
-				GameMap.getMap().excavateCube(worklocation, DesignatedShape.clone());
+				CubeShape DesignatedShape = Excavation.getDesignation(workLocation);
+				GameMap.getMap().excavateCube(workLocation, DesignatedShape.clone());
 
 				//Fall down to the new surface
 				CubeShape NewShape = GameMap.getMap().getCubeShape(Host.getLocation());
@@ -135,8 +137,18 @@ public class Task implements Serializable {
 					Host.setLocation(Newlocation);
 				}
 
-				if (DesignatedShape.isExcavationEquivilent(GameMap.getMap().getCubeShape(worklocation))) {
-					Excavation.completeDesignation(worklocation);
+				if (DesignatedShape.isExcavationEquivilent(GameMap.getMap().getCubeShape(workLocation))) {
+					Excavation.completeDesignation(workLocation);
+					// create a pile of rock
+					MapCoordinate itemLocation = workLocation;
+					CubeShape itemShape = GameMap.getMap().getCubeShape(itemLocation);
+					if (itemShape.isSky()) {
+						// fall down to the new surface
+						itemLocation.translate(Direction.DIRECTION_DOWN);
+					}
+					Game game = Main.app.getStateManager().getState(Game.class);
+					game.spawnItem(itemLocation, "MODEL_ROCK_PILE");
+					// TODO check if anything supported by this block needs to fall down
 					Completed = true;
 				} else {
 					return 100;  // Base on material hardness
