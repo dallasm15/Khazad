@@ -7,8 +7,8 @@
 		<Rotate X="1.5" Y="0" Z="0"/>
 	</Model>
 	<Model>
-		<Name Label="MODEL_ROCK_PILE" />
-		<File Path="Models/RockPile/RockPile.j3o"/>
+		<Name Label="MODEL_CUBE" />
+		<File Path="Models/Cube/Cube.j3o"/>
 		<Scale X="0.25" Y="0.25" Z="0.25"/>
 		<Rotate X="1.5" Y="0" Z="0"/>
 	</Model>

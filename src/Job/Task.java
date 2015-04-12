@@ -147,7 +147,7 @@ public class Task implements Serializable {
 						itemLocation.translate(Direction.DIRECTION_DOWN);
 					}
 					Game game = Main.app.getStateManager().getState(Game.class);
-					game.spawnItem(itemLocation, "MODEL_ROCK_PILE");
+					game.spawnItem(itemLocation, "MODEL_CUBE");
 					// TODO check if anything supported by this block needs to fall down
 					Completed = true;
 				} else {

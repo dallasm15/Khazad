@@ -156,7 +156,7 @@ public class ActorRenderer extends AbstractAppState {
 						CubeShape shape = map.getCubeShape(coords);
 						float CenterHeight = shape.getCenterHeight();
 						actorNode.setLocalTranslation(coords.X, coords.Y, CenterHeight);
-						target.setDirty(false);
+						//target.setDirty(false);
 					}
 				}
 			}
